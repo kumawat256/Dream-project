@@ -15,12 +15,12 @@ use Illuminate\Support\Str;
 class LoginController extends Controller
 {
 
-   // public function sendMail(){
-   //    $subject = "hello world";
-   //    $body = "my name is body";
-   //    FacadesMail::to('mamta256k511@gmail.com')->send(new SendMail($subject,$body));
-   //    dd("done");
-   // }
+   public function sendMail(){
+      $subject = "hello world";
+      $body = "my name is body";
+      FacadesMail::to('mamta256k511@gmail.com')->send(new SendMail($subject,$body));
+      dd("done");
+   }
 
 
    public function login(Request $request){
