@@ -14,6 +14,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public $userModel; 
+    public function __construct()
+    {
+        $this->userModel = new User; 
+    }
     public function index()
     {
         if(Auth::check()){
@@ -82,7 +87,8 @@ class UserController extends Controller
                                         'cpassword' => 'same:password|',
                                         'date' => 'required'
                                         ]);
-        User::whereId($id)->update($updateData);
+        //this is how to use model method in controller example                                        
+        $this->userModel->upda($updateData,$id);
         return redirect('/user')->with('completed', 'Student has been updated');
     }
 
