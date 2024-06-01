@@ -26,19 +26,17 @@ class LoginController extends Controller
 
 
    public function login(Request $request){
-      $helper = new Helper;
-      $data = $helper->sum(2,3);
-      echo $data; die;
-      $request->validate([
+      
+      $request->validateWithBag('login',[
          'email'     => 'required|email',
          'password'  => 'required|min:5|max:10'
       ]);
 
       if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-         //echo "hello12"; die;
+         
          return redirect()->route('dashboard')->with('success','Login successfully');
       }
-      //echo "hello"; die;
+      
       return redirect('/')->with('success','Email and password incorrect');
    }
 
