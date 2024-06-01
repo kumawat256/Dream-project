@@ -20,11 +20,6 @@
     @endif
 @endforeach
 
-<?php 
-// echo "<pre>"; print_r($errors); 
-//     echo "<br>";
-//     echo "<pre>"; print_r(old()); die;
-?>
 <body class="img js-fullheight" style="background-image: url({{url('images/bg.jpg')}}); height:100%;">
     <section class="ftco-section">
         <div class="container">
