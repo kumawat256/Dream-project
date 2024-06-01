@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helper\Helper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\SendMail;
@@ -12,7 +11,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail as FacadesMail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-
 
 class LoginController extends Controller
 {
@@ -26,8 +24,10 @@ class LoginController extends Controller
 
 
    public function login(Request $request){
-      
-      $request->validateWithBag('login',[
+      $helper = new Helper;
+      $data = $helper->sum(2,3);
+      echo $data; die;
+      $request->validate([
          'email'     => 'required|email',
          'password'  => 'required|min:5|max:10'
       ]);
