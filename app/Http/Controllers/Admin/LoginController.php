@@ -14,27 +14,16 @@ use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
-
-   // public function sendMail(){
-   //    $subject = "hello world";
-   //    $body = "my name is body";
-   //    FacadesMail::to('mamta256k511@gmail.com')->send(new SendMail($subject,$body));
-   //    dd("done");
-   // }
-
-
    public function login(Request $request){
-     
+      
       $request->validate([
          'email'     => 'required|email',
          'password'  => 'required|min:5|max:10'
       ]);
 
       if(Auth::attempt(['email'=>$request->email,'password'=>$request->password])){
-         //echo "hello12"; die;
          return redirect()->route('dashboard')->with('success','Login successfully');
       }
-      //echo "hello"; die;
       return redirect('/')->with('success','Email and password incorrect');
    }
 

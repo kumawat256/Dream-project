@@ -28,14 +28,6 @@ class User extends Authenticatable
         'status'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
-    protected $hidden = [
-        'password'
-    ];
 
     /**
      * The attributes that should be cast.
@@ -43,7 +35,6 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
 
@@ -51,4 +42,19 @@ class User extends Authenticatable
     public function upda($data,$id){
         $this->where('id',$id)->update($data);
     }
+
+    public function transaction(){
+        return $this->hasMany(Transaction::class,'user_id','user_id');
+    }
+
+    // protected static function booted()
+    // {
+    //     static::retrieved(function($user){
+    //         // \Log::info("this user data was retrived ".json_encode($user));
+    //     });
+
+    //     static::created(function($user){
+
+    //     });
+    // }
 }
