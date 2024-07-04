@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendEmailJob;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,9 +19,13 @@ class AdminController extends Controller
     public function showAllDataForDataTable(Request $request){  
     // $users = DB::connection('mongodb')->collection('users')->get();
 
-      $user = User::with('transaction')->limit(10)->get();
+      // $user = User::with('transaction')->limit(10)->get();
 
-      return $user;
+      // return $user;
+      DB::enableQueryLog();
+      $users = User::with('transaction')->get();
+
+    $queries = DB::getQueryLog();
       
       return view('admin.dashboard.dashboard');
     }
